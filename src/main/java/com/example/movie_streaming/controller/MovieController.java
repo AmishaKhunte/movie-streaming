@@ -2,6 +2,7 @@ package com.example.movie_streaming.controller;
 
 import com.example.movie_streaming.entity.Movie;
 import com.example.movie_streaming.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class MovieController {
     private MovieService movieService;
 
     @PostMapping
-    public Movie addMovie(@RequestBody Movie movie){
+    public Movie addMovie(@Valid @RequestBody Movie movie){
         return movieService.addMovie(movie);
     }
 

@@ -1,6 +1,7 @@
 package com.example.movie_streaming.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
 
 @Entity
 @Table(name= "movies")
@@ -11,9 +12,18 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message ="Title must not be empty")
     private String title;
+
+    @NotBlank(message ="Genre must not be empty")
     private String genre;
+
+    @NotNull(message="Release year is required")
+    @Min(value=1900, message = "Release year must be after 1900")
     private int releaseYear;
+
+    @DecimalMin(value="0.0",message="Rating must be at least 0")
+    @DecimalMax(value = "10.0",message= "Rating must be at most 10")
     private double rating;
 
     public Movie() {
