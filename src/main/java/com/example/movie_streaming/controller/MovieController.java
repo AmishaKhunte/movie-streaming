@@ -28,4 +28,19 @@ public class MovieController {
     public Movie getMovieById(@PathVariable Long id){
         return movieService.getMovieByID(id);
     }
+
+    @DeleteMapping("/{id}")
+    public String deleteMovie(@PathVariable Long id) {
+        movieService.deleteMovieById(id);
+        return "Movie deleted successfully";
+    }
+
+    @PutMapping("/{id}")
+    public Movie updateMovie(
+            @PathVariable Long id,
+            @RequestBody Movie movie) {
+
+        return movieService.updateMovie(id, movie);
+    }
+
 }
