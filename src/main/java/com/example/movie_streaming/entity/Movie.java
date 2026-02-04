@@ -15,8 +15,8 @@ public class Movie {
     @NotBlank(message ="Title must not be empty")
     private String title;
 
-    @NotBlank(message ="Genre must not be empty")
-    private String genre;
+//    @NotBlank(message ="Genre must not be empty")
+//    private String genre;
 
     @NotNull(message="Release year is required")
     @Min(value=1900, message = "Release year must be after 1900")
@@ -26,13 +26,16 @@ public class Movie {
     @DecimalMax(value = "10.0",message= "Rating must be at most 10")
     private double rating;
 
+    @ManyToOne
+    @JoinColumn(name="genre_id",nullable = false)
+    private Genre genre;
+
     public Movie() {
 
     }
 
-    public Movie(String title, String genre, int releaseYear, double rating) {
+    public Movie(String title, int releaseYear, double rating) {
         this.title = title;
-        this.genre = genre;
         this.releaseYear = releaseYear;
         this.rating = rating;
 
@@ -51,10 +54,18 @@ public class Movie {
         this.title=title;
     }
 
-    public String getGenre(){
+//    public String getGenre(){
+//        return genre;
+//    }
+//    public void setGenre(String genre){
+//        this.genre = genre;
+//    }
+
+    public Genre getGenre() {
         return genre;
     }
-    public void setGenre(String genre){
+
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
