@@ -1,10 +1,11 @@
 package com.example.movie_streaming.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+
+@Entity
+@Table(name="genres")
 public class Genre {
 
     @Id
@@ -20,11 +21,11 @@ public class Genre {
         this.name=name;
     }
 
-    public String getName(String name){
+    public String getName() {
         return name;
     }
 
-    public void setName(){
+    public void setName(String name){
         this.name=name;
     }
 }
