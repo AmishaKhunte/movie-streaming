@@ -12,10 +12,20 @@ public class UserService {
     private UserRepository userRepository;
 
     public User registerUser(User user) {
+
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new RuntimeException("Email already exists");
+        }
+
+        if (user.getRole() == null || user.getRole().isBlank()) {
+            user.setRole("USER");
+        }
+
         return userRepository.save(user);
     }
 
-    public User findByEmail(String email){
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + email));
     }
 }

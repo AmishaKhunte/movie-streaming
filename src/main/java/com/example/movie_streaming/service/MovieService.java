@@ -17,7 +17,9 @@ public class MovieService {
 
     @Autowired
     private MovieRepository movieRepository;
+    @Autowired
     private GenreRepository genreRepository;
+
 
     public Movie addMovie(Movie movie) {
 

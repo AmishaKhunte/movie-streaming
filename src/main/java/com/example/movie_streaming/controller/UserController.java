@@ -2,6 +2,7 @@ package com.example.movie_streaming.controller;
 
 import com.example.movie_streaming.entity.User;
 import com.example.movie_streaming.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User user) {
+    public User registerUser( @Valid  @RequestBody User user) {
         return userService.registerUser(user);
 
     }

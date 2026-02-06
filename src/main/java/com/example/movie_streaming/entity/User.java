@@ -2,6 +2,9 @@ package com.example.movie_streaming.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 
@@ -13,16 +16,20 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Name is Required")
     @Column(nullable = false)
     private String name;
 
+    @Email(message = "Email is  required")
     @Column(nullable = false,unique = true)
     private String email;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Password is required")
+    @Size(min = 6, message = "Password must be at least 6 characters")
+    @Column(unique = true )
     private String password;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Role is required")
     private String role;
 
 
@@ -34,6 +41,7 @@ public class User {
             this.name= name;
             this.email=email;
             this.password=password;
+            this.role=role;
         }
         Long getId() {
             return id;
